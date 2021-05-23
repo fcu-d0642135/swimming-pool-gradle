@@ -12,22 +12,14 @@ pipeline {
             steps {
                 sh 'chmod +x ./gradlew'
                 sh './gradlew test'
+                jacoco(
+                    changeBuildStatus: true,
+                    classPattern: 'build/classes',
+                    exclusionPattern: '**/*Test*.class',
+                    execPattern: 'build/jacoco/**.exec',
+                    inclusionPattern: '**/*.class'
+                )
             }
-            /*
-            post {
-                always {
-                    publishHTML([
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: false,
-                        keepAll: false,
-                        reportDir: 'htmlcov',
-                        reportFiles: 'index.html',
-                        reportName: 'Coverage',
-                        reportTitles: ''
-                    ])
-                }
-            }
-            */
         }
     }
 }

@@ -1,6 +1,8 @@
 package main;
 
 import java.lang.reflect.InvocationTargetException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Main {
 
@@ -14,6 +16,10 @@ public class Main {
 				int age = QueryAge.query();
 				boolean memberAuth = QueryMember.query();
 				boolean groupAuth = QueryGroup.query();
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd E HH:mm:ss"); // 設定日期格式
+				String dateTime = sdf.format(new Date()); // new Date() 為獲取當前系統時間
+
 				/*
 				Identity identity = new Identity(week, member, age, hour, group);
 				Discount discount = new Discount(identity);

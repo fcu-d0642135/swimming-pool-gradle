@@ -48,4 +48,14 @@ public class InputNormalization {
                 break;
         }
     }
+
+    public static int extractHour(String dateTime) {
+        String times = dateTime.split(" ")[2];
+        return Integer.parseInt(times.split(":")[0]);
+    }
+
+    public static int extractMin(String dateTime) {
+        String times = dateTime.split(" ")[2];
+        return Integer.parseInt(times.split(":")[1]);
+    }
 }

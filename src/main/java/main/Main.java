@@ -12,24 +12,8 @@ public class Main {
 			case "1":
 				System.out.println(Chinese.chargesBasic);
 				int age = QueryAge.query();
+				boolean memberAuth = QueryMember.query();
 				/*
-				System.out.println("Are you a member? (Y/N)");
-				
-				format = false;
-				while (!format) {
-					String stMember = input.nextLine();
-					
-					if (stMember.equalsIgnoreCase("Y")) {
-						member = true;
-						format = true;
-					} else if (stMember.equalsIgnoreCase("N")){
-						member = false;
-						format = true;
-					} else {
-						System.out.println("Please enter Y or N.");
-					}
-				}
-				
 				System.out.println("Are you a group? (Y/N)");
 
 				format = false;

@@ -1,59 +1,17 @@
 package main;
 
-import java.util.Scanner;
-
 public class Main {
 
 	public static void main(String[] args) {
-		boolean format = false;
-		boolean member = false;
-		boolean group = false;
-		int week = 0;
-		int hour = 0;
-		int age = 0;
-		
-		Scanner input = new Scanner(System.in);
-		
-		System.out.println(Chinese.planSelection);
-		String plan = input.next();
-		
-		switch (plan) {
+
+		String chargeOption = ChargeOption.select();
+
+		switch (chargeOption) {
 			case "1":
 				System.out.println(Chinese.chargesBasic);
-				System.out.println("What day is today? (enter 1-7)");
-				
-				while (!format) {
-					week = input.nextInt();
-					if (week < 1 || week > 7) {
-						System.out.println("Please enter 1-7");
-					} else {
-						format = true;
-					}
-				}
-				
-				System.out.println("What time did you come? (09:20)");
-				
-				format = false;
-				while (!format) {
-					try {
-						String inTime = input.nextLine();
-						String[] time = inTime.split(":");
-						hour = Integer.parseInt(time[0]);
-						int min = Integer.parseInt(time[1]);
-						
-						if (hour < 5 || (hour == 22 && min > 1) || (hour > 22)) {
-							System.out.println("The Swimming Pool hasn't opened yet.");
-						} else {
-							format = true;
-						}
-					} catch(NumberFormatException e) {
-						System.out.println("Wrong time format!!\n Please enter '12:30'");
-					}
-				}
-				
+				/*
 				System.out.println("How old are you?");
-				
-				format = false;
+
 				while (!format) {
 					age = input.nextInt();
 				
@@ -104,13 +62,13 @@ public class Main {
 				Discount discount = new Discount(identity);
 				
 				System.out.println("Please pay: $" + discount.getTotal());
+				*/
+
 				break;
 			
 			case "2":
-				CompetitionPool competitionpool;
 				System.out.println(Chinese.chargesCompetitionPool);
-				String choice = input.next();
-				
+				/*
 				switch (choice) {
 					case "1":
 						System.out.println(Chinese.rentSingleWaterway);
@@ -152,8 +110,9 @@ public class Main {
 					default:
 						System.out.println("The number is invalid");
 				}
+				*/
 				break;
-				
+
 			default:
 				System.out.println("No plan.");
 				break;

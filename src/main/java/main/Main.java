@@ -1,29 +1,18 @@
 package main;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
 		String chargeOption = ChargeOption.select();
 
 		switch (chargeOption) {
 			case "1":
 				System.out.println(Chinese.chargesBasic);
+				int age = QueryAge.query();
 				/*
-				System.out.println("How old are you?");
-
-				while (!format) {
-					age = input.nextInt();
-				
-					if (age < 3) {
-						System.out.println("Your age is too young.");
-					} else if (age > 75) {
-						System.out.println("Your age doesn't meet the requirements.");
-					} else {
-						format = true;
-					}
-				}
-
 				System.out.println("Are you a member? (Y/N)");
 				
 				format = false;

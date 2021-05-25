@@ -13,24 +13,8 @@ public class Main {
 				System.out.println(Chinese.chargesBasic);
 				int age = QueryAge.query();
 				boolean memberAuth = QueryMember.query();
+				boolean groupAuth = QueryGroup.query();
 				/*
-				System.out.println("Are you a group? (Y/N)");
-
-				format = false;
-				while(!format) {
-					String stGroup = input.nextLine();
-					
-					if (stGroup.equalsIgnoreCase("Y")) {
-						group = true;
-						format = true;
-					} else if (stGroup.equalsIgnoreCase("N")){
-						group = false;
-						format = true;
-					} else {
-						System.out.println("Please enter Y or N.");
-					}	
-				}
-										
 				Identity identity = new Identity(week, member, age, hour, group);
 				Discount discount = new Discount(identity);
 				

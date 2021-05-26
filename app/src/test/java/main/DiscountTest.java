@@ -13,7 +13,6 @@ public class DiscountTest {
 		public void testAgeHasDiscount() throws Throwable {
 			Identity identity = new Identity(10, false, false);
 			Discount discount = new Discount(identity, dateTime);
-			System.out.println(discount.getDiscount());
 			Assertions.assertEquals(0.8, discount.getDiscount());
 		}
 

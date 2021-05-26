@@ -13,11 +13,10 @@ pipeline {
                 sh 'chmod +x ./gradlew'
                 sh './gradlew test'
                 jacoco(
-                    changeBuildStatus: true,
-                    classPattern: 'build/classes',
+                    classPattern: 'app/build/classes',
+                    inclusionPattern: '**/*.class',
                     exclusionPattern: '**/*Test*.class',
-                    execPattern: 'build/jacoco/**.exec',
-                    inclusionPattern: '**/*.class'
+                    execPattern: 'app/build/jacoco/**/*.exec'
                 )
             }
         }

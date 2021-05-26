@@ -1,6 +1,5 @@
 package main;
 
-import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,9 +12,9 @@ public class Main {
 		switch (chargeOption) {
 			case "1":
 				System.out.println(Chinese.chargesBasic);
-				int age = QueryAge.query();
-				boolean memberAuth = QueryMember.query();
-				boolean groupAuth = QueryGroup.query();
+				int age = Query.queryAge();
+				boolean memberAuth = Query.queryMember();
+				boolean groupAuth = Query.queryGroup();
 
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd E HH:mm:ss"); // 設定日期格式
 				String dateTime = sdf.format(new Date()); // new Date() 為獲取當前系統時間

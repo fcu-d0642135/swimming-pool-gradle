@@ -58,4 +58,8 @@ public class InputNormalization {
         String times = dateTime.split(" ")[2];
         return Integer.parseInt(times.split(":")[1]);
     }
+
+    public static String extractWeek(String dateTime) {
+        return dateTime.split(" ")[1];
+    }
 }

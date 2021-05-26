@@ -21,12 +21,8 @@ public class Main {
 
 				Identity identity = new Identity(age, memberAuth, groupAuth);
 				Discount discount = new Discount(identity, dateTime);
-				System.out.println(discount.getDiscount());
-
-				/*
-				System.out.println("Please pay: $" + discount.getTotal());
-				*/
-
+				Payment payment = new Payment(discount, dateTime);
+				payment.print();
 				break;
 			
 			case "2":

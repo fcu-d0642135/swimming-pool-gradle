@@ -4,6 +4,14 @@ import org.junit.jupiter.api.*;
 
 public class DiscountTest {
 
+//	@DisplayName("商業例外測試")
+//	@Nested
+//	class BusinessExcption {
+//		public void testIsBusinessHours() {
+//
+//		}
+//	}
+
 	@DisplayName("會員與團體折扣")
 	@Nested
 	class DifferIdentify {
@@ -50,6 +58,10 @@ public class DiscountTest {
 		public void testAgeHasDiscount() {
 			Identity identity = new Identity(10, false, false);
 			Discount discount = new Discount(identity, dateTime);
+			Assertions.assertEquals(0.8, discount.getDiscount());
+
+			identity.setAge(70);
+			discount = new Discount(identity, dateTime);
 			Assertions.assertEquals(0.8, discount.getDiscount());
 		}
 

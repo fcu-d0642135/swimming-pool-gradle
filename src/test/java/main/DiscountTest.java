@@ -4,23 +4,22 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class DiscountTest {
 
 	static String dateTime;
 
 	@BeforeEach
 	public void catchCurrentTime() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd E HH:mm:ss");
-		dateTime = sdf.format(new Date());
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd E HH:mm:ss");
+//		dateTime = sdf.format(new Date());
+		dateTime = "2021-05-26 週三 14:30:00";
 	}
 
 	@Test
 	public void testAgeHasDiscount() {
 		Identity identity = new Identity(10, false, false);
 		Discount discount = new Discount(identity, dateTime);
+		System.out.println(discount.getDiscount());
 		Assertions.assertEquals(0.8, discount.getDiscount());
 	}
 	

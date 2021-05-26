@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Main {
 
-	public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+	public static void main(String[] args) throws Throwable {
 
 		String chargeOption = ChargeOption.select();
 

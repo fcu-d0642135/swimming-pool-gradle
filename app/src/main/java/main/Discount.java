@@ -1,29 +1,43 @@
 package main;
 
 public class Discount {
-	private double discount = 0;
-	
-	public Discount(Identity identity, String dateTime) {
+	public Identity identity;
+	public int hour;
+	public int min;
+	public double discount = 0;
 
-		int hour = InputNormalization.extractHour(dateTime);
-		int min = InputNormalization.extractMin(dateTime);
+	public Discount(Identity identity, String dateTime) throws Throwable {
 
-		if (hour < 5 || (hour == 22 && min > 0) || hour > 22) {
-			System.out.println("Business hours: 05:00-22:00");
-		} else if (identity.getAge() < 3 || identity.getAge() > 75) {
-			System.out.println("Your age doesn't meet the requirements.");
+		this.identity = identity;
+		this.hour = InputNormalization.extractHour(dateTime);
+		this.min = InputNormalization.extractMin(dateTime);
+
+		checkException();
+	}
+
+	public void checkException() throws Throwable {
+		if (3 > identity.getAge()) {
+			throw new Throwable("Your age is too young.");
+		} else if (identity.getAge() > 75) {
+			throw new Throwable("Your age doesn't meet the requirements.");
+		} else if ((5 > hour || hour > 22) || (hour == 22 && min > 0)) {
+			throw new Throwable("Business hours: 05:00-22:00");
 		} else {
-			if (identity.isMember()) {
-				discount = 0.5;
-			} else if (identity.isGroup()) {
-				discount = 0.7;
-			} else if (identity.getAge() < 12 || identity.getAge() >= 60) {
-				discount = 0.8;
-			} else if (hour >= 5 && hour < 7) {
-				discount = 0.8;
-			} else {
-				discount = 1;
-			}
+			queryDiscount(identity, hour);
+		}
+	}
+
+	private void queryDiscount(Identity identity, int hour) {
+		if (identity.isMember()) {
+			discount = 0.5;
+		} else if (identity.isGroup()) {
+			discount = 0.7;
+		} else if (12 > identity.getAge() || identity.getAge() >= 60) {
+			discount = 0.8;
+		} else if (5 <= hour && hour < 7) {
+			discount = 0.8;
+		} else {
+			discount = 1;
 		}
 	}
 

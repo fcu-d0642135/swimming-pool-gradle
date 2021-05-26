@@ -1,12 +1,11 @@
 package main;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DiscountTest {
 
@@ -19,42 +18,30 @@ public class DiscountTest {
 	}
 
 	@Test
-	public void testAgeHasDiscout() {
+	public void testAgeHasDiscount() {
 		Identity identity = new Identity(10, false, false);
 		Discount discount = new Discount(identity, dateTime);
-		
-		float expected = (float) 0.8;
-		float result = discount.getDiscount();
-		assertEquals(expected, result);
+		Assertions.assertEquals(0.8, discount.getDiscount());
 	}
 	
 	@Test	
-	public void testAgeHasNoDiscout() {
+	public void testAgeHasNoDiscount() {
 		Identity identity = new Identity(40, false, false);
 		Discount discount = new Discount(identity, dateTime);
-		
-		float expected = (float) 0.8;
-		float result = discount.getDiscount();
-		assertEquals(expected, result);
+		Assertions.assertEquals(1, discount.getDiscount());
 	}
 	
 	@Test
 	public void testAgeLessThan() {
 		Identity identity = new Identity(2, false, true);
 		Discount discount = new Discount(identity, dateTime);
-		
-		float expected = (float) (0);
-		float result = discount.getDiscount();
-		assertEquals(expected, result);
+		Assertions.assertEquals(0, discount.getDiscount());
 	}
 	
 	@Test
 	public void testAgeMoreThan() {
 		Identity identity = new Identity(80, true, false);
 		Discount discount = new Discount(identity, dateTime);
-		
-		float expected = (float) (0);
-		float result = discount.getDiscount();
-		assertEquals(expected, result);
+		Assertions.assertEquals(0, discount.getDiscount());
 	}
 }

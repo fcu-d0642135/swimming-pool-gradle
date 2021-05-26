@@ -20,10 +20,11 @@ public class Main {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd E HH:mm:ss"); // 設定日期格式
 				String dateTime = sdf.format(new Date()); // new Date() 為獲取當前系統時間
 
+				Identity identity = new Identity(age, memberAuth, groupAuth);
+				Discount discount = new Discount(identity, dateTime);
+				System.out.println(discount.getDiscount());
+
 				/*
-				Identity identity = new Identity(week, member, age, hour, group);
-				Discount discount = new Discount(identity);
-				
 				System.out.println("Please pay: $" + discount.getTotal());
 				*/
 

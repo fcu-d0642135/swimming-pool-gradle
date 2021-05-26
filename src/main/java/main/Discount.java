@@ -10,6 +10,8 @@ public class Discount {
 
 		if (hour < 5 || (hour == 22 && min > 0) || hour > 22) {
 			System.out.println("Business hours: 05:00-22:00");
+		} else if (identity.getAge() < 3 || identity.getAge() > 75) {
+			System.out.println("Your age doesn't meet the requirements.");
 		} else {
 			if (identity.isMember()) {
 				discount = (float) 0.5;

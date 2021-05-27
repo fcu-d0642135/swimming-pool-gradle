@@ -17,13 +17,6 @@ public class DiscountTest {
 		}
 
 		@Test
-		public void testAgeHasNoDiscount() throws Throwable {
-			Identity identity = new Identity(40, false, false);
-			Discount discount = new Discount(identity, dateTime);
-			Assertions.assertEquals(1, discount.getDiscount());
-		}
-
-		@Test
 		public void testAgeLessThan() throws Throwable {
 			Identity identity = new Identity(2, false, true);
 			try {
@@ -32,31 +25,11 @@ public class DiscountTest {
 				Assertions.assertEquals("Your age is too young.", exception.getMessage());
 			}
 		}
-
-		@Test
-		public void testAgeMoreThan() throws Throwable {
-			Identity identity = new Identity(80, true, false);
-			try {
-				new Discount(identity, dateTime);
-			} catch (Throwable exception) {
-				Assertions.assertEquals("Your age doesn't meet the requirements.", exception.getMessage());
-			}
-		}
 	}
 
 	@DisplayName("營業與非營業時間")
 	@Nested
 	class DifferentBusinessHours {
-		@Test
-		public void testNoBusiness() {
-			Identity identity = new Identity(25, false, false);
-			try {
-				new Discount(identity, "2021-05-26 週三 04:30:00");
-			} catch (Throwable exception) {
-				Assertions.assertEquals("Business hours: 05:00-22:00", exception.getMessage());
-			}
-		}
-
 		@Test
 		public void testEarlyBirdBusiness() throws Throwable {
 			Identity identity = new Identity(25, false, false);

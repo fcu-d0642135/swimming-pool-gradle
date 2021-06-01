@@ -20,26 +20,18 @@ pipeline {
                 )
             }
         }
-		
-        stage('Clone sources') {
+        stage('sonarqube-analysis') {
             steps {
-                git url: 'https://github.com/fcu-d0642135/swimming-pool-gradle.git'
-            }
-        }
-        stage('SonarQube analysis') {
-            steps {
-				checkout scm
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('sqa-sonar') {
                     sh './gradlew sonarqube'
                 }
             }
         }
 		// if the SonarQube analysis result is a failure, we abort the pipeline
-		stage('Quality gate') {
-            steps {
-                waitForQualityGate abortPipeline: true
-            }
-        }
-		
+// 		stage('Quality gate') {
+//             steps {
+//                 waitForQualityGate abortPipeline: true
+//             }
+//         }
     }
 }

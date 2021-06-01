@@ -26,11 +26,16 @@ pipeline {
                 PROJECT_NAME = "swimming_pool"
             }
             steps {
-                withSonarQubeEnv(installationName: 'sqa-sonar', credentialsId: 'sonarqube_token') {
-                    sh '''./gradlew sonarqube \
-                    -Dsonar.login=$SONAR_TOKEN \
-                    -Dsonar.projectKey=$PROJECT_NAME'''
-                }
+//                 withSonarQubeEnv(installationName: 'sqa-sonar', credentialsId: 'sonarqube_token') {
+//                     sh '''./gradlew sonarqube \
+//                     -Dsonar.login=$SONAR_TOKEN \
+//                     -Dsonar.projectKey=$PROJECT_NAME'''
+//                 }
+                sh '''./gradlew sonarqube \
+                    -Dsonar.projectKey=swimming_pool \
+                    -Dsonar.host.url=http://140.134.26.54:10990 \
+                    -Dsonar.login=$SONAR_TOKEN
+                '''
             }
         }
 		// if the SonarQube analysis result is a failure, we abort the pipeline

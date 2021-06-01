@@ -3,12 +3,12 @@ pipeline {
     /* insert Declarative Pipeline here */
     stages {
         stage('run-test') {
-            when {
+            /* when {
                 anyOf {
                     branch 'master'
                     branch 'dev'
                 }
-            }
+            } */
             steps {
                 sh 'chmod +x ./gradlew'
                 sh './gradlew test'
@@ -21,9 +21,13 @@ pipeline {
             }
         }
         stage('sonarqube-analysis') {
+            environment {
+                PROJECT_NAME = "swimming_pool"
+            }
             steps {
-                withSonarQubeEnv('sqa-sonar') {
-                    sh './gradlew sonarqube'
+                withSonarQubeEnv(installationName: 'sqa-sonar', credentialsId: 'sonarqube_token') {
+                    sh './gradlew sonarqube \
+                    -Dsonar.projectKey=$PROJECT_NAME'
                 }
             }
         }

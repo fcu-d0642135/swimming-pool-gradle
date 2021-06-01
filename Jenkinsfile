@@ -23,7 +23,7 @@ pipeline {
 		
         stage('Clone sources') {
             steps {
-                git url: 'https://github.com/fcu-d0642135/swimming-pool.git'
+                git url: 'https://github.com/fcu-d0642135/swimming-pool-gradle.git'
             }
         }
         stage('SonarQube analysis') {

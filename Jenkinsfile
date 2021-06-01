@@ -26,9 +26,8 @@ pipeline {
                 PROJECT_NAME = "swimming_pool"
             }
             steps {
-                withSonarQubeEnv(installationName: 'sqa-sonar') {
+                withSonarQubeEnv(installationName: 'sqa-sonar', credentialsId: 'sonarqube_token') {
                     sh './gradlew sonarqube \
-                    -Dsonar.login=$SONAR_TOKEN \
                     -Dsonar.projectKey=$PROJECT_NAME'
                 }
             }

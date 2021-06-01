@@ -27,8 +27,9 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv(installationName: 'sqa-sonar', credentialsId: 'sonarqube_token') {
-                    sh './gradlew sonarqube \
-                    -Dsonar.projectKey=$PROJECT_NAME'
+                    sh '''./gradlew sonarqube \
+                    -Dsonar.login=$SONAR_TOKEN \
+                    -Dsonar.projectKey=$PROJECT_NAME'''
                 }
             }
         }

@@ -3,12 +3,12 @@ pipeline {
     /* insert Declarative Pipeline here */
     stages {
         stage('run-test') {
-            when {
+            /* when {
                 anyOf {
                     branch 'master'
                     branch 'dev'
                 }
-            }
+            } */
             steps {
                 sh 'chmod +x ./gradlew'
                 sh './gradlew test'
@@ -18,6 +18,19 @@ pipeline {
                     exclusionPattern: '**/*Test*.class',
                     execPattern: 'app/build/jacoco/**/*.exec'
                 )
+            }
+        }
+        stage('sonarqube-analysis') {
+            environment {
+                SONAR_TOKEN = credentials('sonarqube_token')
+                PROJECT_NAME = "swimming_pool"
+            }
+            steps {
+                sh '''./gradlew sonarqube \
+                    -Dsonar.projectKey=swimming_pool \
+                    -Dsonar.host.url=http://140.134.26.54:10990 \
+                    -Dsonar.login=$SONAR_TOKEN
+                '''
             }
         }
     }

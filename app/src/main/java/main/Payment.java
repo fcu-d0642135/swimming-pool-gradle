@@ -6,7 +6,7 @@ public class Payment {
     public int money;
     public double totalCharge;
 
-    public Payment(Discount discount, String dateTime) {
+    public Payment(CalDiscount discount, String dateTime) {
 
         String week = InputNormalization.extractWeek(dateTime);
         System.out.println(week);

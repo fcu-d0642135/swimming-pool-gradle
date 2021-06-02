@@ -2,7 +2,7 @@ package main;
 
 import org.junit.jupiter.api.*;
 
-public class DiscountTest {
+public class CalDiscountTest {
 
 	@DisplayName("不同年紀的折扣")
 	@Nested
@@ -10,24 +10,24 @@ public class DiscountTest {
 		String dateTime = "2021-05-26 週三 14:30:00";
 
 		@Test
-		public void testAgeHasDiscount() throws Throwable {
+		public void testAgeHasCalDiscount() throws Throwable {
 			Identity identity = new Identity(10, false, false);
-			Discount discount = new Discount(identity, dateTime);
-			Assertions.assertEquals(0.8, discount.getDiscount());
+			CalDiscount CalDiscount = new CalDiscount(identity, dateTime);
+			Assertions.assertEquals(0.8, CalDiscount.getDiscount());
 		}
 
 		@Test
-		public void testAgeHasNoDiscount() throws Throwable {
+		public void testAgeHasNoCalDiscount() throws Throwable {
 			Identity identity = new Identity(40, false, false);
-			Discount discount = new Discount(identity, dateTime);
-			Assertions.assertEquals(1, discount.getDiscount());
+			CalDiscount CalDiscount = new CalDiscount(identity, dateTime);
+			Assertions.assertEquals(1, CalDiscount.getDiscount());
 		}
 
 		@Test
 		public void testAgeLessThan() throws Throwable {
 			Identity identity = new Identity(2, false, true);
 			try {
-				new Discount(identity, dateTime);
+				new CalDiscount(identity, dateTime);
 			} catch (Throwable exception) {
 				Assertions.assertEquals("Your age is too young.", exception.getMessage());
 			}
@@ -37,7 +37,7 @@ public class DiscountTest {
 		public void testAgeMoreThan() throws Throwable {
 			Identity identity = new Identity(80, true, false);
 			try {
-				new Discount(identity, dateTime);
+				new CalDiscount(identity, dateTime);
 			} catch (Throwable exception) {
 				Assertions.assertEquals("Your age doesn't meet the requirements.", exception.getMessage());
 			}
@@ -51,7 +51,7 @@ public class DiscountTest {
 		public void testNoBusiness() {
 			Identity identity = new Identity(25, false, false);
 			try {
-				new Discount(identity, "2021-05-26 週三 04:30:00");
+				new CalDiscount(identity, "2021-05-26 週三 04:30:00");
 			} catch (Throwable exception) {
 				Assertions.assertEquals("Business hours: 05:00-22:00", exception.getMessage());
 			}
@@ -60,15 +60,15 @@ public class DiscountTest {
 		@Test
 		public void testEarlyBirdBusiness() throws Throwable {
 			Identity identity = new Identity(25, false, false);
-			Discount discount = new Discount(identity, "2021-05-26 週三 06:30:00");
-			Assertions.assertEquals(0.8, discount.getDiscount());
+			CalDiscount CalDiscount = new CalDiscount(identity, "2021-05-26 週三 06:30:00");
+			Assertions.assertEquals(0.8, CalDiscount.getDiscount());
 		}
 
 		@Test
 		public void testHaveBusiness() throws Throwable {
 			Identity identity = new Identity(25, false, false);
-			Discount discount = new Discount(identity, "2021-05-26 週三 10:30:00");
-			Assertions.assertEquals(1, discount.getDiscount());
+			CalDiscount CalDiscount = new CalDiscount(identity, "2021-05-26 週三 10:30:00");
+			Assertions.assertEquals(1, CalDiscount.getDiscount());
 		}
 	}
 }
